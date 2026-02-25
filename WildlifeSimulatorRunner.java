@@ -12,13 +12,35 @@ import java.util.*;
  */
 public class WildlifeSimulatorRunner {
     
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         // Create simulator with capacity for 20 species
-        
+        WildlifeSimulator simulator = new WildlifeSimulator(20);
         
         // Load species data from CSV
-        
-        
+        File f = new File("species-data.csv");
+        Scanner s = new Scanner(f);
+        s.nextLine();
+        while (s.hasNextLine()){
+            String line = s.nextLine();
+            String[]pieces = line.split(",");
+
+            String name = pieces[0];
+            int population = Integer.parseInt(pieces[1]);          
+            double birthRate = Double.parseDouble(pieces[2]);          
+            double deathRate = Double.parseDouble(pieces[3]);          
+            int habitatCapacity = Integer.parseInt(pieces[4]);          
+            String location = pieces[5];       
+            
+            Species temp = new Species(name, population, birthRate, deathRate, habitatCapacity, location);
+            simulator.addSpecies(temp);
+        }
+    // private String name;
+    // private long population;
+    // private double birthRate;
+    // private double deathRate;
+    // private long habitatCapacity;
+    // private String location;
+    
         System.out.println("\n========================================");
         System.out.println("WILDLIFE POPULATION SIMULATOR");
         System.out.println("========================================\n");
