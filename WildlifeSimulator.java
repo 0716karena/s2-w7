@@ -31,6 +31,12 @@ public class WildlifeSimulator {
      */
     public void simulateYear() {
         //TODO
+        //call each species simulateYear
+        //loop the Species Array
+        for(Species s:species){
+            s.simulateYear();
+                }
+
     }
     
     /**
@@ -38,14 +44,21 @@ public class WildlifeSimulator {
      */
     public void simulate(int years) {
         //TODO
-    }
-    
+        //a loop for "years"
+        //each year call simulateYear
+        for(int i=0;i<years;i++){
+            simulateYear();
+        }
+    }    
     /**
      * Get species at given index
      */
     public Species getSpecies(int index) {
         //TODO
-        return null;
+        if(index>species.length){
+            throw  new IllegalArgumentException();
+        }
+        return species[index];
     }
     
     /**
@@ -67,7 +80,11 @@ public class WildlifeSimulator {
      */
     public double getTotalPopulation() {
         //TODO
-        return 0.0;
+        double x=0;
+        for(Species s:species){
+            x+=s.getPopulation();
+        }
+        return x;
     }
     
     /**
@@ -75,7 +92,13 @@ public class WildlifeSimulator {
      */
     public int getMostPopulousIndex() {
         //TODO
-        return -1;
+        int max=0;
+        for(Species s:species){
+            if(s.getPopulation()>max){
+                max=s.getPopulation();
+            }
+        }
+        return max;
     }
     
     /**
